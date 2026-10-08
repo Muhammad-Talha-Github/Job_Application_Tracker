@@ -145,11 +145,21 @@ An application contains `id`, `company`, `position`, `status`, `application_date
 
 ## Screenshots
 
-Screenshots have not been added yet. To add them, save images under `docs/screenshots/` and link them here. For example:
+### Dashboard
 
-```markdown
-![Application dashboard](docs/screenshots/dashboard.png)
-```
+![Dashboard overview](docs/screenshots/Dashboard_1.png)
+
+![Dashboard applications](docs/screenshots/Dashboard_2.png)
+
+### Login and registration
+
+![Login page](docs/screenshots/Login_Page.png)
+
+![Account registration](docs/screenshots/Account_Registration.png)
+
+### Add an application
+
+![Add application form](docs/screenshots/Add_Application.png)
 
 ## Live demo
 
