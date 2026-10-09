@@ -1,2 +1,3 @@
 # Local Docker Compose settings may contain development credentials.
 .env
+.env.production

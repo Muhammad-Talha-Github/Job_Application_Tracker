@@ -65,6 +65,27 @@ def test_protected_route_rejects_missing_invalid_and_expired_tokens(client):
         "/applications", headers={"Authorization": "Bearer not-a-jwt"}
     ).status_code == 401
 
+
+def test_cors_allows_local_frontend_and_rejects_unconfigured_origins(client):
+    """CORS allows configured local UI origins without enabling every website."""
+    allowed = client.options(
+        "/applications",
+        headers={
+            "Origin": "http://localhost:5173",
+            "Access-Control-Request-Method": "GET",
+        },
+    )
+    assert allowed.headers["access-control-allow-origin"] == "http://localhost:5173"
+
+    denied = client.options(
+        "/applications",
+        headers={
+            "Origin": "https://unconfigured.example",
+            "Access-Control-Request-Method": "GET",
+        },
+    )
+    assert "access-control-allow-origin" not in denied.headers
+
     expired_token = jwt.encode(
         {"sub": "1", "exp": datetime.now(timezone.utc) - timedelta(minutes=1)},
         JWT_SECRET_KEY,

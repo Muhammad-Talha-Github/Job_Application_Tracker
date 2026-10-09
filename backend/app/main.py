@@ -5,6 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from sqlalchemy.exc import SQLAlchemyError
 
+from app.config import FRONTEND_ORIGINS
 from app.routers.auth import router as auth_router
 from app.routers.applications import router as applications_router
 
@@ -22,11 +23,10 @@ async def database_error_handler(_request, _exception: SQLAlchemyError) -> JSONR
         content={"detail": "Database operation failed. Please try again later."},
     )
 
-# Browsers enforce CORS when the Vite page (port 5173) calls this API (port 8000).
-# Allow only the local development origins used by Vite, with the CRUD methods needed.
+# Allow only configured local or deployed frontend origins, never every website.
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_origins=FRONTEND_ORIGINS,
     allow_credentials=False,
     allow_methods=["GET", "POST", "PUT", "DELETE"],
     allow_headers=["Content-Type", "Authorization"],
