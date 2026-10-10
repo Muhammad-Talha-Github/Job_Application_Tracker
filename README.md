@@ -26,7 +26,10 @@ A personal job search dashboard for keeping track of applications, interview pro
 ### Live Demo & Walkthrough
 
 - **live demo:** [http://3.26.152.16](http://3.26.152.16) _(EC2 instance terminated to avoid ongoing AWS costs; link is no longer active.)_
-- **Demo video:** [Watch the project walkthrough](docs/demo_video/Job_Application_Tracker_demo.mp4)
+
+## Project Demo
+
+https://github.com/user-attachments/assets/2a6ee872-d124-4806-88a5-ef6ea4a47c51
 
 ## Architecture
 
