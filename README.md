@@ -176,7 +176,3 @@ An application contains `id`, `company`, `position`, `status`, `application_date
 ### Add an application
 
 ![Add application form](docs/screenshots/Add_Application.png)
-
-## Live demo
-
-There is no live deployment yet. Add the public frontend URL here after deployment.
