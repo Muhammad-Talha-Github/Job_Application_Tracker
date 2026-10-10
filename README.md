@@ -12,6 +12,22 @@ A personal job search dashboard for keeping track of applications, interview pro
 - **Tests:** pytest and FastAPI TestClient
 - **Containers:** Docker and Docker Compose
 
+### AWS EC2 Deployment
+
+- Deployed and tested on **AWS EC2** using Ubuntu and Docker Compose.
+- Containerized the React frontend, FastAPI backend, and PostgreSQL database.
+- Served the frontend on port `80` and the API on port `8000`.
+- Used a Docker internal network to keep PostgreSQL inaccessible through a public host port.
+- Configured production environment variables and generated secrets outside the Git repository.
+- Verified user authentication, CRUD operations, database persistence, and user-specific data isolation.
+
+**Infrastructure:** AWS EC2 (`t3.micro`, Sydney region `ap-southeast-2`), Docker Engine, Docker Compose.
+
+### Live Demo & Walkthrough
+
+- **live demo:** [http://3.26.152.16](http://3.26.152.16) _(EC2 instance terminated to avoid ongoing AWS costs; link is no longer active.)_
+- **Demo video:** [Watch the project walkthrough](docs/demo_video/Job_Application_Tracker_demo.mp4)
+
 ## Architecture
 
 ```text
@@ -131,15 +147,15 @@ docker compose down
 
 All request and response bodies use JSON. The application endpoints require an `Authorization: Bearer <token>` header.
 
-| Method | Endpoint | Purpose | Authentication |
-| --- | --- | --- | --- |
-| `POST` | `/auth/register` | Create an account | No |
-| `POST` | `/auth/login` | Log in and receive a JWT | No |
-| `GET` | `/applications` | List the current user's applications | Yes |
-| `GET` | `/applications/{id}` | Get one of the current user's applications | Yes |
-| `POST` | `/applications` | Create an application for the current user | Yes |
-| `PUT` | `/applications/{id}` | Replace an application owned by the current user | Yes |
-| `DELETE` | `/applications/{id}` | Delete an application owned by the current user | Yes |
+| Method   | Endpoint             | Purpose                                          | Authentication |
+| -------- | -------------------- | ------------------------------------------------ | -------------- |
+| `POST`   | `/auth/register`     | Create an account                                | No             |
+| `POST`   | `/auth/login`        | Log in and receive a JWT                         | No             |
+| `GET`    | `/applications`      | List the current user's applications             | Yes            |
+| `GET`    | `/applications/{id}` | Get one of the current user's applications       | Yes            |
+| `POST`   | `/applications`      | Create an application for the current user       | Yes            |
+| `PUT`    | `/applications/{id}` | Replace an application owned by the current user | Yes            |
+| `DELETE` | `/applications/{id}` | Delete an application owned by the current user  | Yes            |
 
 An application contains `id`, `company`, `position`, `status`, `application_date`, `job_url`, and `notes`. The server assigns `id` and the authenticated user; clients do not choose ownership.
 
